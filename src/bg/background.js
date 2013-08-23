@@ -1,13 +1,71 @@
-// if you checked "fancy-settings" in extensionizr.com, uncomment this lines
+//define keywords and url used for each service
+var images = {'keywords': ['images', 'image'],
+          'url': 'https://www.google.com/images?'};
+var maps = {'keywords': ['maps', 'map', 'directions'],
+        'url': 'https://www.google.com/maps?'};
+var youtube = {'keywords': ['youtube'],
+           'url': 'https://www.youtube.com/results?'};
+var news = {'keywords': ['news'],
+        'url': 'https://www.google.com/news?'};
+var calendar = {'keywords': ['calendar'],
+            'url': 'https://www.google.com/calendar/render?'};
+var gmail = {'keywords': ['mail', 'inbox', 'gmail'],
+         'url': 'https://mail.google.com/mail/u/0/#search/'};
+var drive = {'keywords': ['drive', 'docs'],
+         'url': 'https://drive.google.com/#search/'};
+var translate = {'keywords': ['translate'],
+             'url': 'https://translate.google.com/?#auto/en/'};
+var plus = {'keywords': ['g+', 'google+'],
+        'url': 'https://plus.google.com/u/0/s/'};
+var web = {'keywords': ['web'],
+        'url': 'http://www.google.com/search?'};
 
-// var settings = new Store("settings", {
-//     "sample_setting": "This is how you use Store.js to remember values"
-// });
+var services = [images, maps, youtube, news, calendar,
+            gmail, drive, translate, plus, web];
 
+var special_cases = gmail['keywords'].concat(drive['keywords'], translate['keywords'], plus['keywords']);
 
-//example of using a message handler from the inject scripts
-chrome.extension.onMessage.addListener(
-  function(request, sender, sendResponse) {
-  	chrome.pageAction.show(sender.tab.id);
-    sendResponse();
-  });
+function contains(a, obj) {
+    var i = a.length;
+    while (i--) {
+       if (a[i] === obj) {
+           return true;
+       }
+    }
+    return false;
+}
+
+chrome.omnibox.onInputEntered.addListener(
+  	function(text) {
+  		//keyword must be first word in query
+        var selected = text.split(' ')[0];
+        try {
+        	var query = text.split(' ')[1];
+        } catch(e) {
+        	console.log(e);
+        	var query = '';
+        }
+        var special_case = false;
+        var keyword_match = false;
+        for (service in services) {
+    	    var current_service = services[service];
+            for (keyword in current_service['keywords']) {
+            	var current_keyword = current_service['keywords'][keyword];
+            	if (current_keyword === selected) {
+            		var	base_url = current_service['url'];
+            		var	keyword_match = true;
+            		if (contains(special_cases, current_keyword)) {
+            			var special_case = true;
+            		}
+            	}
+            }
+        }
+
+        if (!keyword_match) {
+        	var base_url = web['url'];
+        }
+
+        var search_terms = (special_case ? '' : 'q=') + encodeURIComponent(query);
+        chrome.tabs.update({url: base_url+search_terms});
+    }
+);

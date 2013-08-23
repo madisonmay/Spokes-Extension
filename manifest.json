@@ -1,8 +1,8 @@
 {
-  "name": "CHANGE THIS : Extension boilerplate",
+  "name": "Spokes",
   "version": "0.0.1",
   "manifest_version": 2,
-  "description": "This extension was created with the awesome extensionizr.io",
+  "description": "Unified search",
   "homepage_url": "http://extensionizr.com",
   "icons": {
     "16": "icons/icon16.png",
@@ -11,14 +11,15 @@
   },
   "default_locale": "en",
   "background": {
-    "page": "src/bg/background.html",
-    "persistent": true
+    "scripts": [
+    "src/bg/background.js"
+    ]
   },
   "options_page": "src/options/index.html",
   "browser_action": {
     "default_icon": "icons/icon19.png",
-    "default_title": "browser action demo",
-    "default_popup": "src/browser_action/browser_action.html"
+    "default_title": "Spokes",
+    "default_popup": ""
   },
   "permissions": [
     "contextMenus",
@@ -26,6 +27,6 @@
     "https://*/*, http://*/*"
   ],
   "omnibox": {
-    "keyword": "extensionizr"
+    "keyword": "in"
   }
 }
