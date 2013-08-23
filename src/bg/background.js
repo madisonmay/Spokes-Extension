@@ -1,12 +1,12 @@
 //define keywords and url used for each service
 var images = {'keywords': ['images', 'image'],
-              'url': 'https://www.google.com/images?'};
+              'url': 'https://www.google.com/images?q='};
 var maps = {'keywords': ['maps', 'map', 'directions'],
-            'url': 'https://www.google.com/maps?'};
+            'url': 'https://www.google.com/maps?q='};
 var youtube = {'keywords': ['youtube'],
-               'url': 'https://www.youtube.com/results?'};
+               'url': 'https://www.youtube.com/results?q='};
 var news = {'keywords': ['news'],
-            'url': 'https://www.google.com/news?'};
+            'url': 'https://www.google.com/news?q='};
 var calendar = {'keywords': ['calendar'],
                 'url': 'https://www.google.com/calendar/render?'};
 var gmail = {'keywords': ['mail', 'inbox', 'gmail', 'email'],
@@ -17,15 +17,19 @@ var translate = {'keywords': ['translate'],
                  'url': 'https://translate.google.com/?#auto/en/'};
 var plus = {'keywords': ['g+', 'google+'],
             'url': 'https://plus.google.com/u/0/s/'};
-var web = {'keywords': ['web'],
-           'url': 'http://www.google.com/search?'};
+var web = {'keywords': ['web', 'google'],
+           'url': 'http://www.google.com/search?q='};
 var twitter = {'keywords': ['twitter', 'tweets'], 
-			   'url': 'https://twitter.com/search?'}
+			   'url': 'https://twitter.com/search?q='}
 var facebook = {'keywords': ['fb', 'facebook'], 
-				'url': 'https://www.facebook.com/search/more/?'}			   
+				'url': 'https://www.facebook.com/search/more/?q='}
+var bing = {'keywords': ['bing'],
+            'url': 'http://www.bing.com/search?'}	
+var wolfram_alpha = {'keywords': ['wolfram', 'alpha', 'wa', 'wolframalpha'], 
+					 'url': 'http://www.wolframalpha.com/input/?i='}   
 
 var services = [images, maps, youtube, news, calendar, gmail, drive, 
-                translate, plus, web, twitter, facebook];
+                translate, plus, web, twitter, facebook, bing, wolfram_alpha];
 
 var special_cases = gmail['keywords'].concat(drive['keywords'], translate['keywords'], plus['keywords']);
 
@@ -69,7 +73,7 @@ chrome.omnibox.onInputEntered.addListener(
         	var base_url = web['url'];
         }
 
-        var search_terms = (special_case ? '' : 'q=') + encodeURIComponent(query);
+        var search_terms = encodeURIComponent(query);
         chrome.tabs.update({url: base_url+search_terms});
     }
 );
