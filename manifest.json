@@ -1,5 +1,5 @@
 {
-  "name": "Spokes",
+  "name": "spokes",
   "version": "0.0.1",
   "manifest_version": 2,
   "description": "Unified search",
@@ -18,7 +18,7 @@
   "options_page": "src/options/index.html",
   "browser_action": {
     "default_icon": "icons/icon19.png",
-    "default_title": "Spokes",
+    "default_title": "+",
     "default_popup": ""
   },
   "permissions": [
@@ -27,6 +27,6 @@
     "https://*/*, http://*/*"
   ],
   "omnibox": {
-    "keyword": "in"
+    "keyword": "+"
   }
 }

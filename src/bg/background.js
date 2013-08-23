@@ -39,6 +39,8 @@ var ebay = {'keywords': ['ebay'],
             'url' : 'http://www.ebay.com/sch/i.html?_trksid=m570.l3201&_nkw='}
 var github = {'keywords': ['github'], 
               'url': 'https://github.com/search?q='}
+var spokes = {'keywords': ['spokes'],
+			  'url': 'http://spokes-search.herokuapp.com/search?q'}
 
 var services = [images, maps, youtube, news, calendar, gmail, drive, 
                 translate, plus, web, twitter, facebook, bing, wolfram_alpha,
@@ -78,7 +80,7 @@ chrome.omnibox.onInputEntered.addListener(
         }
 
         if (!keyword_match) {
-        	var base_url = web['url'];
+        	var base_url = spokes['url'];
         	var query = text;
         }
 
