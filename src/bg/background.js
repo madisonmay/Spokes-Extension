@@ -31,9 +31,12 @@ var wolfram_alpha = {'keywords': ['wolfram', 'alpha', 'wa', 'wolframalpha'],
 					 'url': 'http://www.wolframalpha.com/input/?i='}  
 var hacker_news = {'keywords': ['hn'],
 		           'url': 'https://www.hnsearch.com/search#request/all&q='} 
+var yahoo = {'keywords': ['yahoo'], 
+             'url': 'http://search.yahoo.com/search?q='}
 
 var services = [images, maps, youtube, news, calendar, gmail, drive, 
-                translate, plus, web, twitter, facebook, bing, wolfram_alpha, hacker_news];
+                translate, plus, web, twitter, facebook, bing, wolfram_alpha,
+                hacker_news, yahoo];
 
 function contains(a, obj) {
     var i = a.length;
