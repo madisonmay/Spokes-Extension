@@ -40,7 +40,7 @@ var ebay = {'keywords': ['ebay'],
 var github = {'keywords': ['github'], 
               'url': 'https://github.com/search?q='}
 var spokes = {'keywords': ['spokes'],
-			  'url': 'http://spokes-search.herokuapp.com/search?q'}
+			  'url': 'http://spokes-search.herokuapp.com/search?q='}
 
 var services = [images, maps, youtube, news, calendar, gmail, drive, 
                 translate, plus, web, twitter, facebook, bing, wolfram_alpha,
