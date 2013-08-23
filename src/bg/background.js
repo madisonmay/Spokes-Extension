@@ -28,12 +28,12 @@ var facebook = {'keywords': ['fb', 'facebook'],
 var bing = {'keywords': ['bing'],
             'url': 'http://www.bing.com/search?'}	
 var wolfram_alpha = {'keywords': ['wolfram', 'alpha', 'wa', 'wolframalpha'], 
-					 'url': 'http://www.wolframalpha.com/input/?i='}   
+					 'url': 'http://www.wolframalpha.com/input/?i='}  
+var hacker_news = {'keywords': ['hn'],
+		           'url': 'https://www.hnsearch.com/search#request/all&q='} 
 
 var services = [images, maps, youtube, news, calendar, gmail, drive, 
-                translate, plus, web, twitter, facebook, bing, wolfram_alpha];
-
-var special_cases = gmail['keywords'].concat(drive['keywords'], translate['keywords'], plus['keywords']);
+                translate, plus, web, twitter, facebook, bing, wolfram_alpha, hacker_news];
 
 function contains(a, obj) {
     var i = a.length;
@@ -56,7 +56,6 @@ chrome.omnibox.onInputEntered.addListener(
         	console.log(e);
         	var query = '';
         }
-        var special_case = false;
         var keyword_match = false;
         for (service in services) {
     	    var current_service = services[service];
@@ -65,9 +64,6 @@ chrome.omnibox.onInputEntered.addListener(
             	if (current_keyword === selected) {
             		var	base_url = current_service['url'];
             		var	keyword_match = true;
-            		if (contains(special_cases, current_keyword)) {
-            			var special_case = true;
-            		}
             	}
             }
         }
