@@ -1,4 +1,6 @@
 //define keywords and url used for each service
+//note -- change to finding length of keyword 
+//and checking against substring of query
 var images = {'keywords': ['images', 'image'],
               'url': 'https://www.google.com/images?q='};
 var maps = {'keywords': ['maps', 'map', 'directions'],
@@ -48,7 +50,8 @@ chrome.omnibox.onInputEntered.addListener(
   		//keyword must be first word in query
         var selected = text.split(' ')[0];
         try {
-        	var query = text.split(' ')[1];
+        	var query_array = text.split(' ');
+        	var query = query_array.slice(1, query_array.length).join(' ');
         } catch(e) {
         	console.log(e);
         	var query = '';
