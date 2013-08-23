@@ -35,10 +35,14 @@ var yahoo = {'keywords': ['yahoo'],
              'url': 'http://search.yahoo.com/search?q='}
 var amazon = {'keywords': ['amazon'],
               'url': 'http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias%3Daps&field-keywords='}
+var ebay = {'keywords': ['ebay'],
+            'url' : 'http://www.ebay.com/sch/i.html?_trksid=m570.l3201&_nkw='}
+var github = {'keywords': ['github'], 
+              'url': 'https://github.com/search?q='}
 
 var services = [images, maps, youtube, news, calendar, gmail, drive, 
                 translate, plus, web, twitter, facebook, bing, wolfram_alpha,
-                hacker_news, yahoo, amazon];
+                hacker_news, yahoo, amazon, ebay, github];
 
 function contains(a, obj) {
     var i = a.length;
