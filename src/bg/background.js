@@ -33,10 +33,12 @@ var hacker_news = {'keywords': ['hn'],
 		           'url': 'https://www.hnsearch.com/search#request/all&q='} 
 var yahoo = {'keywords': ['yahoo'], 
              'url': 'http://search.yahoo.com/search?q='}
+var amazon = {'keywords': ['amazon'],
+              'url': 'http://www.amazon.com/s/ref=nb_sb_noss?url=search-alias%3Daps&field-keywords='}
 
 var services = [images, maps, youtube, news, calendar, gmail, drive, 
                 translate, plus, web, twitter, facebook, bing, wolfram_alpha,
-                hacker_news, yahoo];
+                hacker_news, yahoo, amazon];
 
 function contains(a, obj) {
     var i = a.length;
@@ -73,6 +75,7 @@ chrome.omnibox.onInputEntered.addListener(
 
         if (!keyword_match) {
         	var base_url = web['url'];
+        	var query = text;
         }
 
         var search_terms = encodeURIComponent(query);
