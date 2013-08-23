@@ -1,27 +1,31 @@
 //define keywords and url used for each service
 var images = {'keywords': ['images', 'image'],
-          'url': 'https://www.google.com/images?'};
+              'url': 'https://www.google.com/images?'};
 var maps = {'keywords': ['maps', 'map', 'directions'],
-        'url': 'https://www.google.com/maps?'};
+            'url': 'https://www.google.com/maps?'};
 var youtube = {'keywords': ['youtube'],
-           'url': 'https://www.youtube.com/results?'};
+               'url': 'https://www.youtube.com/results?'};
 var news = {'keywords': ['news'],
-        'url': 'https://www.google.com/news?'};
+            'url': 'https://www.google.com/news?'};
 var calendar = {'keywords': ['calendar'],
-            'url': 'https://www.google.com/calendar/render?'};
-var gmail = {'keywords': ['mail', 'inbox', 'gmail'],
-         'url': 'https://mail.google.com/mail/u/0/#search/'};
+                'url': 'https://www.google.com/calendar/render?'};
+var gmail = {'keywords': ['mail', 'inbox', 'gmail', 'email'],
+             'url': 'https://mail.google.com/mail/u/0/#search/'};
 var drive = {'keywords': ['drive', 'docs'],
-         'url': 'https://drive.google.com/#search/'};
+             'url': 'https://drive.google.com/#search/'};
 var translate = {'keywords': ['translate'],
-             'url': 'https://translate.google.com/?#auto/en/'};
+                 'url': 'https://translate.google.com/?#auto/en/'};
 var plus = {'keywords': ['g+', 'google+'],
-        'url': 'https://plus.google.com/u/0/s/'};
+            'url': 'https://plus.google.com/u/0/s/'};
 var web = {'keywords': ['web'],
-        'url': 'http://www.google.com/search?'};
+           'url': 'http://www.google.com/search?'};
+var twitter = {'keywords': ['twitter', 'tweets'], 
+			   'url': 'https://twitter.com/search?'}
+var facebook = {'keywords': ['fb', 'facebook'], 
+				'url': 'https://www.facebook.com/search/more/?'}			   
 
-var services = [images, maps, youtube, news, calendar,
-            gmail, drive, translate, plus, web];
+var services = [images, maps, youtube, news, calendar, gmail, drive, 
+                translate, plus, web, twitter, facebook];
 
 var special_cases = gmail['keywords'].concat(drive['keywords'], translate['keywords'], plus['keywords']);
 
