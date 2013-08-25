@@ -43,10 +43,12 @@ var spokes = {'keywords': ['spokes'],
 			        'url': 'http://spokes-search.herokuapp.com/search?q='}
 var duckduckgo = {'keywords': ['duckduckgo'],
                   'url': 'https://duckduckgo.com/?q='}
+var wikipedia = {'keywords': ['wikipedia', 'wiki'],
+                 'url': 'http://en.wikipedia.org/w/index.php?search='}
 
 var services = [images, maps, youtube, news, calendar, gmail, drive, 
                 translate, plus, web, twitter, facebook, bing, wolfram_alpha,
-                hacker_news, yahoo, amazon, ebay, github, duckduckgo];
+                hacker_news, yahoo, amazon, ebay, github, duckduckgo, wikipedia];
 
 function contains(a, obj) {
     var i = a.length;
