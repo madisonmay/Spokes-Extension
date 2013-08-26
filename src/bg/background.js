@@ -1,9 +1,9 @@
 //define keywords and url used for each service
 //note -- change to finding length of keyword 
 //and checking against substring of query
-var images = {'keywords': ['images', 'image'],
+var images = {'keywords': ['images', 'image', 'google-images'],
               'url': 'https://www.google.com/images?q='};
-var maps = {'keywords': ['maps', 'map', 'directions'],
+var maps = {'keywords': ['maps', 'map', 'directions', 'google-maps'],
             'url': 'https://www.google.com/maps?q='};
 var youtube = {'keywords': ['youtube'],
                'url': 'https://www.youtube.com/results?q='};
@@ -49,7 +49,7 @@ var wikipedia = {'keywords': ['wikipedia', 'wiki'],
 var services = [images, maps, youtube, news, calendar, gmail, drive, 
                 translate, plus, web, twitter, facebook, bing, wolfram_alpha,
                 hacker_news, yahoo, amazon, ebay, github, duckduckgo, wikipedia];
-
+var name = ['googl']
 function contains(a, obj) {
     var i = a.length;
     while (i--) {
@@ -63,7 +63,7 @@ function contains(a, obj) {
 chrome.omnibox.onInputEntered.addListener(
   	function(text) {
   		//keyword must be first word in query
-        var selected = text.split(' ')[0];
+        var selected = text.split(' ')[0].toLowerCase();
         try {
         	var query_array = text.split(' ');
         	var query = query_array.slice(1, query_array.length).join(' ');
@@ -74,13 +74,13 @@ chrome.omnibox.onInputEntered.addListener(
         var keyword_match = false;
         for (service in services) {
     	    var current_service = services[service];
-            for (keyword in current_service['keywords']) {
-            	var current_keyword = current_service['keywords'][keyword];
-            	if (current_keyword === selected) {
-            		var	base_url = current_service['url'];
-            		var	keyword_match = true;
-            	}
-            }
+          for (keyword in current_service['keywords']) {
+          	var current_keyword = current_service['keywords'][keyword];
+          	if (current_keyword === selected) {
+          		var	base_url = current_service['url'];
+          		var	keyword_match = true;
+          	}
+          }
         }
 
         if (!keyword_match) {
@@ -92,3 +92,25 @@ chrome.omnibox.onInputEntered.addListener(
         chrome.tabs.update({url: base_url+search_terms});
     }
 );
+
+chrome.omnibox.onInputChanged.addListener(
+  function(text, suggest) {
+
+    //only one word has been typed
+    if (text.split(' ').length === 1 && text.length > 1) {
+      var selected = text.toLowerCase();
+      for (service in services) {
+        var current_service = services[service];
+        for (keyword in current_service['keywords']) {
+          var current_keyword = current_service['keywords'][keyword];
+          if (selected == current_keyword.substring(0, selected.length)) {
+            console.log("Selected: ", selected);
+            console.log("Current keyword: ", current_keyword);
+            chrome.omnibox.setDefaultSuggestion({description: "<match>" + selected + "</match>" +
+                                                 current_keyword.substring(selected.length)});
+          }
+        }
+      }
+    }
+  }
+)
